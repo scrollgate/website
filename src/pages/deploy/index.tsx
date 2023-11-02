@@ -2,13 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Icon } from '@iconify/react';
 import { useWallets } from '@web3-onboard/react';
-import { Col, Divider, Grid, Row, Statistic, Steps, Typography } from 'antd';
+import { Col, Divider, Row, Statistic, Steps, Typography } from 'antd';
 import { ContractFactory } from 'ethers';
 import { useInView } from 'framer-motion';
 import CountUp from 'react-countup';
-import Particles from 'react-particles';
-import type { Container, Engine } from 'tsparticles-engine';
-import { loadSlim } from 'tsparticles-slim';
 
 import guide from '@assets/images/guide.png';
 import introduce from '@assets/images/introduce.png';
