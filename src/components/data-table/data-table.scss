@@ -1,0 +1,22 @@
+@import '@styles/variables';
+
+.data-table {
+  width: 100%;
+
+  .action-bar {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .ant-table-tbody {
+    .check-circle-outlined {
+      font-size: 15px;
+      color: green;
+    }
+
+    .close-circle-outlined {
+      font-size: 15px;
+      color: red;
+    }
+  }
+}

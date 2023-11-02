@@ -1,0 +1,16 @@
+@import '@styles/components';
+
+.phase {
+  @apply md:text-4xl text-2xl font-semibold mt-14 italic;
+  @include text-high-light;
+}
+
+.custom-statistic {
+  .ant-statistic-title {
+    @apply text-2xl;
+  }
+
+  .ant-statistic-content {
+    @apply text-4xl md:text-5xl font-bold;
+  }
+}

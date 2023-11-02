@@ -1,0 +1,44 @@
+@import '@styles/variables';
+
+.bg-light {
+  background: #efefbb; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #d4d3dd, #efefbb); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #d4d3dd,
+    #efefbb
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  .card-nft {
+    background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(17, 0, 32, 0.5) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.618);
+  }
+
+  .button-high-light {
+    &:not(:disabled) {
+      border: 1px solid rgb(200, 200, 200);
+    }
+  }
+
+  .card-nft {
+    .description {
+      color: rgb(106, 106, 106) !important ;
+    }
+  }
+}
+
+.bg-dark {
+  background: $color-bg-dark; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #1d2230,
+    $color-bg-dark,
+    #1d2230
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #1d2230,
+    $color-bg-dark,
+    #1d2230
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

@@ -1,0 +1,25 @@
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+@import 'reset';
+@import 'variables';
+@import 'components';
+@import 'web3-onboard';
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 16px;
+
+  @media only screen and (max-width: $max-screen-lg) {
+    font-size: 14px;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
