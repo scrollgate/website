@@ -103,43 +103,49 @@ export default function DeployPage() {
 
   const handleDeployContract = useCallback(
     async (contract: ContractCardInfo) => {
-      const compiled = compiledList[contract.code];
-
-      if (contract.type === TypeContract.NFT) {
-        openNFTConstructor({
-          title: 'NFT Information',
-          data: {
-            contract,
-            compiled,
-            handleOpenDeployResult,
-          },
-        });
-        return;
-      }
-
-      if (contract.type === TypeContract.HELLO_SCROLL) {
-        openContractConstructor({
-          title: 'Smart Contract Information',
-          data: {
-            contract,
-            compiled,
-            handleOpenDeployResult,
-          },
-        });
-        return;
-      }
-
-      // Deploy smart contract with abi, bytecode
-      const factory = new ContractFactory(compiled.abi, compiled.bytecode, signer);
-      const newContract = await factory.deploy();
-
-      const result = await newContract.deploymentTransaction()?.wait();
       handleOpenDeployResult({
-        address: result?.contractAddress || '',
-        hash: result?.blockHash || '',
+        address: '',
+        hash: '',
         title: contract.title,
         contractId: contract.id,
       });
+      // const compiled = compiledList[contract.code];
+
+      // if (contract.type === TypeContract.NFT) {
+      //   openNFTConstructor({
+      //     title: 'NFT Information',
+      //     data: {
+      //       contract,
+      //       compiled,
+      //       handleOpenDeployResult,
+      //     },
+      //   });
+      //   return;
+      // }
+
+      // if (contract.type === TypeContract.HELLO_SCROLL) {
+      //   openContractConstructor({
+      //     title: 'Smart Contract Information',
+      //     data: {
+      //       contract,
+      //       compiled,
+      //       handleOpenDeployResult,
+      //     },
+      //   });
+      //   return;
+      // }
+
+      // // Deploy smart contract with abi, bytecode
+      // const factory = new ContractFactory(compiled.abi, compiled.bytecode, signer);
+      // const newContract = await factory.deploy();
+
+      // const result = await newContract.deploymentTransaction()?.wait();
+      // handleOpenDeployResult({
+      //   address: result?.contractAddress || '',
+      //   hash: result?.blockHash || '',
+      //   title: contract.title,
+      //   contractId: contract.id,
+      // });
     },
 
     [openNFTConstructor, handleOpenDeployResult, openContractConstructor, compiledList, signer]

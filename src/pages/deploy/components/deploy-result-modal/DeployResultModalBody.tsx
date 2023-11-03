@@ -1,23 +1,52 @@
-import { Button, Typography } from 'antd';
+import { Icon } from '@iconify/react';
+import { Button, Col, Row, Skeleton, Typography } from 'antd';
+import { TwitterFollowButton, TwitterShareButton } from 'react-twitter-embed';
 
 import fireworks from '@assets/images/fireworks.gif';
-import { SCROLL_SCAN } from '@root/constants';
+import { SCROLL_ELIGIBILITY, SCROLL_SCAN, TWITTER } from '@root/constants';
 import { DeployContractResult, ModalBodyProps } from '@root/interfaces';
 
 export default function DeployResultModalBody({ data }: ModalBodyProps) {
   const modalData = data as DeployContractResult;
 
   const handleCheckEligible = () => {
-    window.open('https://scroll.io/developer-nft/check-eligibility', '_blank');
+    window.open(SCROLL_ELIGIBILITY, '_blank');
   };
 
   return (
     <>
-      <div className="text-center">
-        <img src={fireworks} alt="success" className="w-[50%]" />
-      </div>
+      <Row gutter={[16, 16]}>
+        <Col sm={12} className="text-center">
+          <img src={fireworks} alt="success" className="w-full" />
+        </Col>
 
-      <div className="w-[80%] mx-auto text-center ">
+        <Col sm={12} className="flex items-center justify-center w-full">
+          <div className="text-center">
+            <Typography>Would you like share it with your fiends?</Typography>
+
+            <div className="mt-2 h-10">
+              <TwitterShareButton
+                options={{
+                  buttonHashtag: undefined,
+                  screenName: undefined,
+                  size: 'large',
+                  text: 'I just deployed smart contract to the Scroll network at ',
+                  via: 'ScrollGate',
+                }}
+                url="https://scrollgate.pro"
+              />
+            </div>
+
+            <Typography>Would you like to know about new smart contract?</Typography>
+
+            <div className="mt-2  h-10">
+              <TwitterFollowButton screenName="ScrollGate" options={{ size: 'large' }} />
+            </div>
+          </div>
+        </Col>
+      </Row>
+
+      <div className="w-[80%] mx-auto text-center mt-4">
         <Typography.Text className="text-lg mt-4 font-bold italic default-text-high-light">
           Congratulations. You have deployed {modalData.title} smart contract to the Scroll network
         </Typography.Text>
@@ -26,7 +55,7 @@ export default function DeployResultModalBody({ data }: ModalBodyProps) {
 
       <Typography className="text-base font-medium mt-4">Transaction hash</Typography>
       <Typography.Link
-        className="text-base font-medium text-primary italic"
+        className="font-medium text-primary italic"
         href={`${SCROLL_SCAN}/tx/${modalData.hash}`}
         target="_blank"
       >
@@ -36,7 +65,7 @@ export default function DeployResultModalBody({ data }: ModalBodyProps) {
       <Typography className="text-base font-medium mt-2">Smart Contract Address: </Typography>
       <Typography.Link
         href={`${SCROLL_SCAN}/address/${modalData.address}`}
-        className="text-base font-medium text-primary italic"
+        className="font-medium text-primary italic"
         target="_blank"
       >
         {modalData.address}

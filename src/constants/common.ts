@@ -10,6 +10,10 @@ export const DEFAULT_CACHE_TIME = 10 * 60 * 1000;
 export const DEBOUNCE_TIME = 700;
 
 export const SCROLL_SCAN = 'https://scrollscan.com';
+export const SCROLL_ELIGIBILITY = 'https://scroll.io/developer-nft/check-eligibility';
+export const TWITTER = 'https://twitter.com/ScrollGate';
+export const GITHUB = 'https://github.com/scrollgate';
+export const DISCORD = 'https://discord.com';
 
 export enum Language {
   EN = 'en', // English
