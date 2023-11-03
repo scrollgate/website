@@ -8,7 +8,7 @@ import clsx from 'clsx';
 import { useMatches, useNavigate } from 'react-router-dom';
 
 import logo from '@assets/images/logo.png';
-import { ChainId, HEADER_MENU, ModalSize } from '@root/constants';
+import { ChainId, DISCORD, GITHUB, HEADER_MENU, ModalSize, TWITTER } from '@root/constants';
 import { useModal } from '@root/hooks';
 import { useEtherWalletStore } from '@root/services/store';
 import { getDeployPath } from '@root/utils';
@@ -127,7 +127,7 @@ export default function HeaderComponent() {
           )}
           <WalletConnect />
           <Typography.Link
-            href="https://github.com/scrollgate"
+            href={GITHUB}
             className="flex"
             style={{ color: 'inherit' }}
             target="_blank"
@@ -135,7 +135,7 @@ export default function HeaderComponent() {
             <Icon icon="mdi:github" fontSize={24} className="cursor-pointer ml-5" />
           </Typography.Link>
           <Typography.Link
-            href="https://discord.com"
+            href={DISCORD}
             className="flex"
             style={{ color: 'inherit' }}
             target="_blank"
@@ -143,7 +143,7 @@ export default function HeaderComponent() {
             <Icon icon="ic:baseline-discord" fontSize={24} className="cursor-pointer ml-3" />
           </Typography.Link>
           <Typography.Link
-            href="https://twitter.com/scroll_contract"
+            href={TWITTER}
             className="flex"
             style={{ color: 'inherit' }}
             target="_blank"

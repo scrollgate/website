@@ -12,4 +12,4 @@ ENV TZ=Asia/Ho_Chi_Minh
 RUN npm run build
 RUN npm install -g serve
 CMD serve -s dist
-EXPOSE 3000
+EXPOSE 3200
