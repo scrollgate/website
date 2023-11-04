@@ -3,8 +3,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useWallets } from '@web3-onboard/react';
 import { Col, Divider, Row, Statistic, Steps, Typography } from 'antd';
+import dayjs from 'dayjs';
 import { ContractFactory } from 'ethers';
 import { useInView } from 'framer-motion';
+import Countdown, { CountdownRenderProps } from 'react-countdown';
 import CountUp from 'react-countup';
 
 import guide from '@assets/images/guide.png';
@@ -20,10 +22,14 @@ import ContractCard from './components/contract-card/ContractCard';
 import ContractConstructorModalBody from './components/contract-constructor-modal/ContractConstructorModal';
 import DeployResultModalBody from './components/deploy-result-modal/DeployResultModalBody';
 import NFTConstructorModalBody from './components/nft-constructor-modal/NFTConstructorModalBody';
-
+import { TimerCountdown } from './components/timer-count-down/TimerCountdown';
 import './deploy.scss';
 
 const formatter = (value: number | string) => <CountUp end={+value} separator="," />;
+const renderer = ({ hours, minutes, seconds, days }: CountdownRenderProps) => {
+  return <TimerCountdown hours={hours} days={days} seconds={seconds} minutes={minutes} />;
+};
+
 const STEPS = [
   {
     title: <Typography className="text-xl font-semibold">Choose Smart Contract</Typography>,
@@ -103,49 +109,43 @@ export default function DeployPage() {
 
   const handleDeployContract = useCallback(
     async (contract: ContractCardInfo) => {
+      const compiled = compiledList[contract.code];
+
+      if (contract.type === TypeContract.NFT) {
+        openNFTConstructor({
+          title: 'NFT Information',
+          data: {
+            contract,
+            compiled,
+            handleOpenDeployResult,
+          },
+        });
+        return;
+      }
+
+      if (contract.type === TypeContract.HELLO_SCROLL) {
+        openContractConstructor({
+          title: 'Smart Contract Information',
+          data: {
+            contract,
+            compiled,
+            handleOpenDeployResult,
+          },
+        });
+        return;
+      }
+
+      // Deploy smart contract with abi, bytecode
+      const factory = new ContractFactory(compiled.abi, compiled.bytecode, signer);
+      const newContract = await factory.deploy();
+
+      const result = await newContract.deploymentTransaction()?.wait();
       handleOpenDeployResult({
-        address: '',
-        hash: '',
+        address: result?.contractAddress || '',
+        hash: result?.blockHash || '',
         title: contract.title,
         contractId: contract.id,
       });
-      // const compiled = compiledList[contract.code];
-
-      // if (contract.type === TypeContract.NFT) {
-      //   openNFTConstructor({
-      //     title: 'NFT Information',
-      //     data: {
-      //       contract,
-      //       compiled,
-      //       handleOpenDeployResult,
-      //     },
-      //   });
-      //   return;
-      // }
-
-      // if (contract.type === TypeContract.HELLO_SCROLL) {
-      //   openContractConstructor({
-      //     title: 'Smart Contract Information',
-      //     data: {
-      //       contract,
-      //       compiled,
-      //       handleOpenDeployResult,
-      //     },
-      //   });
-      //   return;
-      // }
-
-      // // Deploy smart contract with abi, bytecode
-      // const factory = new ContractFactory(compiled.abi, compiled.bytecode, signer);
-      // const newContract = await factory.deploy();
-
-      // const result = await newContract.deploymentTransaction()?.wait();
-      // handleOpenDeployResult({
-      //   address: result?.contractAddress || '',
-      //   hash: result?.blockHash || '',
-      //   title: contract.title,
-      //   contractId: contract.id,
-      // });
     },
 
     [openNFTConstructor, handleOpenDeployResult, openContractConstructor, compiledList, signer]
@@ -173,7 +173,11 @@ export default function DeployPage() {
           <Typography className="phase">Phase 1: Quintic - Nov 10, 2023</Typography>
         </div>
 
-        <Row gutter={[16, 16]} className="mt-4">
+        <div className="text-center mt-4">
+          <Countdown date={new Date('2023-11-10T06:00:00Z')} renderer={renderer} />
+        </div>
+
+        <Row gutter={[16, 16]} className="mt-6">
           {data?.data?.contracts.map((item) => (
             <Col xl={6} md={12} xs={24}>
               <ContractCard
