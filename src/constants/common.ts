@@ -13,7 +13,7 @@ export const SCROLL_SCAN = 'https://scrollscan.com';
 export const SCROLL_ELIGIBILITY = 'https://scroll.io/developer-nft/check-eligibility';
 export const TWITTER = 'https://twitter.com/ScrollGate';
 export const GITHUB = 'https://github.com/scrollgate';
-export const DISCORD = 'https://discord.gg/39vzNsRe';
+export const DISCORD = 'https://discord.com/invite/Zx88aEkP';
 
 export enum Language {
   EN = 'en', // English
