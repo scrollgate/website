@@ -1,4 +1,16 @@
 {
+  "simple-contract": {
+    "_format": "hh-sol-artifact-1",
+    "contractName": "SimpleContract",
+    "abi": [
+      {
+        "inputs": [],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      }
+    ],
+    "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea264697066735822122032ad1cf2fb64af593021415ae9da4c27bddf3aa4bfaa0bf6b8dba49d3a76d17264736f6c63430008150033"
+  },
   "hello-scroll": {
     "_format": "hh-sol-artifact-1",
     "contractName": "HelloScrollOrigins",
@@ -46,7 +58,6 @@
   "simple-calculator": {
     "_format": "hh-sol-artifact-1",
     "contractName": "SimpleCalculator",
-    "sourceName": "contracts/SimpleCalculator.sol",
     "abi": [
       {
         "inputs": [],
@@ -155,7 +166,6 @@
   "nft": {
     "_format": "hh-sol-artifact-1",
     "contractName": "NFTContract",
-    "sourceName": "contracts/ScrollForAll.sol",
     "abi": [
       {
         "inputs": [

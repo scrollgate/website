@@ -109,8 +109,7 @@ export default function DeployPage() {
 
   const handleDeployContract = useCallback(
     async (contract: ContractCardInfo) => {
-      // const compiled = compiledList[contract.code];
-      const compiled = compiledList['simple-calculator'];
+      const compiled = compiledList[contract.code];
 
       if (contract.type === TypeContract.NFT) {
         openNFTConstructor({
