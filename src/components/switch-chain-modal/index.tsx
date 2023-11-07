@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useSetChain } from '@web3-onboard/react';
 import { Button, Space, Typography } from 'antd';
 
-import scrollLogo from '@assets/images/logo.png';
+import scrollLogo from '@assets/images/scroll-logo.png';
 import { ChainId } from '@root/constants';
 import { ModalBodyProps } from '@root/interfaces';
 

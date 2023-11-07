@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 import { Button, Skeleton, Tag, Tooltip, Typography } from 'antd';
 import clsx from 'clsx';
+import { toast } from 'react-toastify';
 
 import { TypeContract } from '@root/constants';
 import { ContractCardProps } from '@root/interfaces';
 import { useEtherWalletStore } from '@root/services/store';
 
 import './contract-card.scss';
-import { toast } from 'react-toastify';
 
 const ContractCard = ({ info, handleDeploy, isLoadingData }: ContractCardProps) => {
   const { provider, isSupportedChain } = useEtherWalletStore();
@@ -22,8 +22,10 @@ const ContractCard = ({ info, handleDeploy, isLoadingData }: ContractCardProps) 
       setIsLoading(true);
       await handleDeploy(info);
       setIsLoading(false);
-    } catch (error) {
-      toast.error('Insufficient balance');
+    } catch (error: any) {
+      if (error.action === 'estimateGas') {
+        toast.error('Insufficient balance');
+      }
       setIsLoading(false);
     }
   };
