@@ -1,9 +1,8 @@
-import { Icon } from '@iconify/react';
-import { Button, Col, Row, Skeleton, Typography } from 'antd';
-import { TwitterFollowButton, TwitterShareButton } from 'react-twitter-embed';
+import { Button, Col, Row, Typography } from 'antd';
+import { Follow, Share } from 'react-twitter-widgets';
 
 import fireworks from '@assets/images/fireworks.gif';
-import { SCROLL_ELIGIBILITY, SCROLL_SCAN, TWITTER } from '@root/constants';
+import { SCROLL_ELIGIBILITY, SCROLL_SCAN } from '@root/constants';
 import { DeployContractResult, ModalBodyProps } from '@root/interfaces';
 
 export default function DeployResultModalBody({ data }: ModalBodyProps) {
@@ -25,10 +24,8 @@ export default function DeployResultModalBody({ data }: ModalBodyProps) {
             <Typography>Would you like share it with your fiends?</Typography>
 
             <div className="mt-2 h-10">
-              <TwitterShareButton
+              <Share
                 options={{
-                  buttonHashtag: undefined,
-                  screenName: undefined,
                   size: 'large',
                   text: 'I just deployed smart contract to the Scroll network at ',
                   via: 'ScrollGate',
@@ -40,7 +37,7 @@ export default function DeployResultModalBody({ data }: ModalBodyProps) {
             <Typography>Would you like to know about new smart contract?</Typography>
 
             <div className="mt-2  h-10">
-              <TwitterFollowButton screenName="ScrollGate" options={{ size: 'large' }} />
+              <Follow username="ScrollGate" options={{ size: 'large' }} />
             </div>
           </div>
         </Col>
