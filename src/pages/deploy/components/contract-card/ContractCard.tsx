@@ -37,7 +37,7 @@ const ContractCard = ({ info, handleDeploy, isLoadingData }: ContractCardProps) 
           {isLoadingData ? (
             <Skeleton.Image className="image" active />
           ) : (
-            <img className="image" src={image} alt="NFT" />
+            <img className="image" src={image} alt="Contract" />
           )}
 
           {isLoadingData ? (

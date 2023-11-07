@@ -1,5 +1,6 @@
 import { Col, Form, Input, Row, Typography } from 'antd';
 import { ContractFactory } from 'ethers';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import useYupSchema from '@root/hooks/useYupSchema';
@@ -36,7 +37,10 @@ export default function ContractConstructorModalBody({
         address: result?.contractAddress || '',
         contractId: data?.contract?.id,
       });
-    } catch (error) {
+    } catch (error: any) {
+      if (error.action === 'estimateGas') {
+        toast.error('Insufficient balance');
+      }
       setIsLoading(false);
     }
   };

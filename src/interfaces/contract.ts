@@ -1,7 +1,5 @@
 import { Interface, InterfaceAbi } from 'ethers';
 
-import { TypeContract } from '@root/constants';
-
 export interface ContractInfo {
   ADDRESS: Record<number, string>;
   ABI: Interface | InterfaceAbi;

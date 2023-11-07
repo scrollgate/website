@@ -1,5 +1,6 @@
 import { Col, Form, Input, Row } from 'antd';
 import { ContractFactory } from 'ethers';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import useYupSchema from '@root/hooks/useYupSchema';
@@ -38,7 +39,10 @@ export default function NFTConstructorModalBody({
         address: result?.contractAddress || '',
         contractId: data?.contract?.id,
       });
-    } catch (error) {
+    } catch (error: any) {
+      if (error.action === 'estimateGas') {
+        toast.error('Insufficient balance');
+      }
       setIsLoading(false);
     }
   };
